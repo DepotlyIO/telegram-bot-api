@@ -13,13 +13,6 @@ concurrency:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
-
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +36,9 @@ jobs:
         with:
           context: .
           push: true
-          platforms: ${{ matrix.platform }}
+          platforms:
+            - linux/amd64
+            - linux/arm64
           tags: ${{ vars.DOCKERHUB_IMAGE_NAME }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
