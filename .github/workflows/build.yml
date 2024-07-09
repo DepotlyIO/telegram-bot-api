@@ -14,10 +14,13 @@ concurrency:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
-        architecture: [ amd64, arm64 ]
+        platform:
+          - linux/amd64
+          - linux/arm64
 
-    runs-on: ${{ matrix.architecture }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
